@@ -5,18 +5,18 @@ import Profile from "../routes/Profile";
 import React from 'react';
 import Navigation from "./Navigation";
 
-const AppRouter = ({isLoggedIn}) => {
+const AppRouter = ({isLoggedIn, userObj, refreshUser}) => {
     return (
         <Router>
-            {isLoggedIn && <Navigation/>}
+            {isLoggedIn && <Navigation userObj={userObj}/>}
             <Switch>
                 {isLoggedIn? (
                     <>
                         <Route exact path="/">
-                            <Home />
+                            <Home userObj={userObj}/>
                         </Route>
                         <Route exact path="/profile">
-                            <Profile />
+                            <Profile refreshUser={refreshUser} userObj={userObj}/>
                         </Route>
                     </>
                 ) : (
